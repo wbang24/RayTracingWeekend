@@ -82,8 +82,8 @@ int main(){
     
     ofstream img ("image.ppm");
     
-    int nx = 1200;
-    int ny = 800;
+    int nx = 600;
+    int ny = 400;
     int ns = 10;
     
     img<<"P3\n" << nx << " " << ny << " \n255\n";
@@ -109,7 +109,7 @@ int main(){
     /*
      Camera Position and Focus
      */
-    vec3 lookfrom(13,2,3);
+    vec3 lookfrom(13,2,15);
     vec3 lookat(0,0,0);
     float dist_to_focus = 10.0;
     float aperture = 0.1;

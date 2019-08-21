@@ -25,6 +25,7 @@
 /* Begin PBXFileReference section */
 		E75DC65A230C826B00DCE186 /* camera.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = camera.h; sourceTree = "<group>"; };
 		E75DC65B230C8A1D00DCE186 /* material.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = material.h; sourceTree = "<group>"; };
+		E7D0F6C2230DB39800160AC4 /* triangle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = triangle.h; sourceTree = "<group>"; };
 		E7FFFB2223067C93009BDB70 /* RayTracing */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = RayTracing; sourceTree = BUILT_PRODUCTS_DIR; };
 		E7FFFB2523067C93009BDB70 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		E7FFFB2C2308AE50009BDB70 /* vect3.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = vect3.h; sourceTree = "<group>"; };
@@ -72,6 +73,7 @@
 				E7FFFB30230BBA77009BDB70 /* hitable_list.h */,
 				E7FFFB2C2308AE50009BDB70 /* vect3.h */,
 				E7FFFB2D230B7FE3009BDB70 /* ray.h */,
+				E7D0F6C2230DB39800160AC4 /* triangle.h */,
 			);
 			path = RayTracing;
 			sourceTree = "<group>";
