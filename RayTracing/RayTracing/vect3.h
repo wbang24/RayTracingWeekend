@@ -14,6 +14,14 @@
 #include <stdlib.h>
 #include <iostream>
 
+/*
+ 3D Vector Calculations
+ Length
+ Dot product
+ Cross product
+ ...
+ and more
+ */
 class vec3{
 public:
     vec3(){}

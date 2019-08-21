@@ -10,7 +10,9 @@
 #define camera_h
 
 #include "ray.h"
-
+/*
+ 
+ */
 vec3 random_in_unit_disk() {
     vec3 p;
     do {
@@ -21,7 +23,11 @@ vec3 random_in_unit_disk() {
 
 class camera {
 public:
-    camera(vec3 lookfrom, vec3 lookat, vec3 vup, float vfov, float aspect, float aperture, float focus_dist) { // vfov is top to bottom in degrees
+    // vfov is top to bottom in degrees
+    //lookfrom is the position of the camera
+    //lookat is the direction of the camera
+    //The larger the aperture the more defocus we get
+    camera(vec3 lookfrom, vec3 lookat, vec3 vup, float vfov, float aspect, float aperture, float focus_dist) {
         lens_radius = aperture / 2;
         float theta = vfov*M_PI/180;
         float half_height = tan(theta/2);
@@ -34,6 +40,8 @@ public:
         horizontal = 2*half_width*focus_dist*u;
         vertical = 2*half_height*focus_dist*v;
     }
+    
+
     ray get_ray(float s, float t) {
         vec3 rd = lens_radius*random_in_unit_disk();
         vec3 offset = u * rd.x() + v * rd.y();

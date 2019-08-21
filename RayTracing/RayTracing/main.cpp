@@ -16,6 +16,11 @@
 
 using namespace std;
 
+
+/*
+ colour is a function that will decide what colours need to be scattered
+ This will depend on the material the sphere has
+ */
 vec3 colour(const ray& r, hitable *world, int depth){
     hit_record rec;
     if(world->hit(r, 0.001, MAXFLOAT, rec)){
@@ -35,6 +40,10 @@ vec3 colour(const ray& r, hitable *world, int depth){
     }
 }
 
+/*
+ This function creates the scene seen on the cover of the minibook
+ It will create man spheres of varying materials: Diffuse, Metal, Deilectric
+ */
 hitable *random_scene() {
     int n = 500;
     hitable **list = new hitable*[n+1];
@@ -80,7 +89,12 @@ int main(){
     img<<"P3\n" << nx << " " << ny << " \n255\n";
     
     hitable *list[5];
-  //  float R = cos(M_PI/4);
+  
+    //  float R = cos(M_PI/4);
+    
+    /*
+     Creating spheres of different materials
+     */
     list[0] = new sphere(vec3(0,0,-1), 0.5, new lambertian(vec3(0.1,0.2,0.5)));
     list[1] = new sphere(vec3(0,-100.5,-1), 100, new lambertian(vec3(0.8,0.8,0.0)));
     list[2] = new sphere(vec3(1,0,-1), 0.5, new metal(vec3(0.8,0.6,0.2), 0.2));
@@ -89,16 +103,24 @@ int main(){
    // list[0] = new sphere(vec3(-R,0,-1), R, new lambertian(vec3(0,0,1)));
     //list[1] = new sphere(vec3(R,0,-1), R, new lambertian(vec3(1,0,0)));
 
-
     hitable *world = new hitable_list(list, 5);
     world = random_scene();
+    
+    /*
+     Camera Position and Focus
+     */
     vec3 lookfrom(13,2,3);
     vec3 lookat(0,0,0);
     float dist_to_focus = 10.0;
     float aperture = 0.1;
-    
     camera cam(lookfrom, lookat, vec3(0,1,0), 20, float(nx)/float(ny), aperture, dist_to_focus);
 
+    /*
+     Drawing each pixel of our rendered image
+     Outputting to a ppm file
+     Set computer default program that supports ppm files
+        Like Peter, I used ToyViewer
+     */
     for(int j = ny-1; j >= 0; j-- ){
         for(int i = 0; i <nx; i++){
             vec3 col(0,0,0);

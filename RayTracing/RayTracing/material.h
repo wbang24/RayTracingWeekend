@@ -23,11 +23,18 @@ vec3 random_in_unit_sphere() {
     return p;
 }
 
-
+/*
+ reflect is used in metal instead of scatter.
+ reflect determines the length of that reflection from the metal material
+ */
 vec3 reflect(const vec3& v, const vec3& n) {
     return v - 2*dot(v,n)*n;
 }
 
+/*
+ refract will give a mirror look to materials
+ This follows Snell's Law of refraction
+ */
 bool refract(const vec3& v, const vec3& n, float ni_over_nt, vec3& refracted){
     vec3 uv = unit_vector(v);
     float dt = dot(uv, n);
@@ -41,6 +48,7 @@ bool refract(const vec3& v, const vec3& n, float ni_over_nt, vec3& refracted){
         return false;
 }
 
+
 float schlick(float cosine, float ref_idx) {
     float r0 = (1-ref_idx) / (1+ref_idx);
     r0 = r0*r0;
@@ -53,6 +61,9 @@ public:
     virtual bool scatter(const ray& r_in, const hit_record& rec, vec3& attenuation, ray& scattered) const = 0;
 };
 
+/*
+ DIFFUSE MATERIAL
+ */
 class lambertian : public material {
 public:
     lambertian(const vec3& a) : albedo(a) {}
@@ -66,6 +77,9 @@ public:
     vec3 albedo;
 };
 
+/*
+ METAL METERIAL
+ */
 class metal : public material{
 public:
     metal(const vec3& a, float f) : albedo(a){ if(f<1) fuzz = f; else fuzz = 1;}
@@ -78,6 +92,10 @@ public:
     float fuzz;
     vec3 albedo;
 };
+
+/*
+ DIELECTIC MATERIAL
+ */
 class dielectric : public material {
 public:
     dielectric(float ri) : ref_idx(ri) {}

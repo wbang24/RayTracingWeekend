@@ -19,7 +19,9 @@ struct hit_record{
     vec3 normal;
     material *mat_ptr;
 };
-
+/*
+ hitable is an abstract class that takes in a ray
+ */
 class hitable{
 public:
     virtual bool hit(const ray& r, float t_min, float t_max, hit_record& rec) const = 0;
