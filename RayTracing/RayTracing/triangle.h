@@ -14,15 +14,15 @@
 class triangle: public hitable{
 public:
     triangle(){}
-    triangle(vec3 triangle_point_a, vec3 triangle_point_b, vec3 triangle_point_c, float height, float base, material *m) : triangle_point_a(tri_a),
+    triangle(vec3 tri_a, vec3 tri_b, vec3 tri_c, float h, float b, material *m) : triangle_point_a(tri_a),
     triangle_point_b(tri_b), triangle_point_c(tri_c), height(h), base(b), mat_ptr(m) {};
     
     virtual bool hit(const ray& r, float tmin, float tmax, hit_record& rec) const;
-    vec3 tri_a;
-    vec3 tri_b;
-    vec3 tri_c;
-    float h;
-    float b;
+    vec3 triangle_point_a;
+    vec3 triangle_point_b;
+    vec3 triangle_point_c;
+    float height;
+    float base;
     material *mat_ptr;
 };
 
